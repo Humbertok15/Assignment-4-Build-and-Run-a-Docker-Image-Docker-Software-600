@@ -38,21 +38,67 @@ Your task is to containerize this existing application using Docker. You need to
 
 ## Starting the Application
 
-- To build the docker image run the command:
+### Build the Docker Image
+
+Run this command from the root directory of the project:
 
 ```bash
-
+docker build -t docker-assignment:latest .
 ```
 
-- To run your docker container in port 3000 run the command:
+### Run the Docker Container
 
 ```bash
+docker run -d --name docker-assignment-container -p 3000:3000 docker-assignment:latest
+```
 
+### Access the Application
+
+- Homepage: http://localhost:3000
+- API status: http://localhost:3000/api/status
+
+### Screenshots
+
+**Application Homepage**
+
+![Application homepage](screenshots/homepage-screenshot.png)
+
+**API Status Response**
+
+![API status response](screenshots/api-status-screenshot.png)
+
+### Container Management
+
+Check running containers:
+
+```bash
+docker ps
+```
+
+Stop the container gracefully:
+
+```bash
+docker stop docker-assignment-container
+```
+
+Start the stopped container again:
+
+```bash
+docker start docker-assignment-container
+```
+
+Remove the container (stop it first if necessary):
+
+```bash
+docker stop docker-assignment-container
+docker rm docker-assignment-container
 ```
 
 ## Reflection Question
-**Answer the following question in the space below**: How does containerization with Docker differ from using virtual machines, and why might a development team choose Docker containers over VMs for deploying applications like the one you just containerized?
 
+Containerization with Docker differs from using virtual machines because Docker containers share the host operating system's kernel, while virtual machines run separate guest operating systems on virtualized hardware. As a result, containers generally require fewer resources, start faster, and are easier to package and distribute than full virtual machines.
+
+A development team might choose Docker because it allows developers to build and test applications in consistent environments across different computers and deployment servers. Docker images include the application and its dependencies, reducing problems caused by differences between development and production environments. Containers also make it easier to deploy, scale, and update applications efficiently. Virtual machines remain useful when a team needs separate operating systems or stronger isolation at the operating-system level.
 
 
 ## Application Requirements for Docker
